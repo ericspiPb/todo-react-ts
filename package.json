@@ -1,5 +1,5 @@
 {
-  "name": "todo-react-ts",
+  "name": "@ericspipb/todo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
