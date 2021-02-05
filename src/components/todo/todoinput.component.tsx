@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export interface ToDoInputProps {
-  onSubmit: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  onSubmit: (event: React.MouseEvent<HTMLInputElement, MouseEvent>, text: string) => void;
 }
 
 export interface ToDoInputStates {
@@ -27,8 +27,8 @@ export default class ToDoInput extends React.Component<ToDoInputProps, ToDoInput
   }
 
   handleAddButtonClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>): void => {
+    this.props.onSubmit(event, this.state.value);
     this.setState({ value: ''});
-    this.props.onSubmit(event);
   }
 
   render() {

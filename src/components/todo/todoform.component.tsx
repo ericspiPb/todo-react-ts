@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ToDo } from './todo.entity';
+import ToDoEntity, { ToDo } from './todo.entity';
 import ToDoComponent from './todo.component';
 import ToDoInput from './todoinput.component';
 
@@ -9,17 +9,31 @@ export interface ToDoFormProps {
   todos?: ToDo[]
 }
 
-export default class ToDoForm extends React.Component<ToDoFormProps> {
+export interface ToDoFormStates {
+  todos: ToDo[]
+}
+
+export default class ToDoForm extends React.Component<ToDoFormProps, ToDoFormStates> {
   static propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({value: PropTypes.string}))
   }
 
-  handleAdd = (event: React.MouseEvent<HTMLInputElement, MouseEvent>): void => {
-    console.log('text add button', 'clicked');
+  constructor(props: ToDoFormProps) {
+    super(props);
+
+    this.state = {
+      todos: this.props.todos || []
+    }
+  }
+
+  handleAdd = (event: React.MouseEvent<HTMLInputElement, MouseEvent>, text: string): void => {
+    this.setState({
+      todos: [...this.state.todos, new ToDoEntity({value: text})]
+    });
   }
 
   render() {
-    const { todos } = this.props;
+    const { todos } = this.state;
 
     return (
       <div>

@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 export interface ToDo extends mongoose.Document {
   value: string,
-  completedAt: Date,
-  deletedAt: Date
+  completedAt?: Date,
+  deletedAt?: Date
 }
 
 export const schema = new mongoose.Schema({

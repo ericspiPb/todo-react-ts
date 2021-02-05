@@ -28,8 +28,10 @@ export default class ToDoComponent extends React.Component<ToDoProps, ToDoStates
     };
   }
 
-  handleClick = () => {
-    console.log('on clicked');
+  handleClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+    this.setState({
+      completed: !this.state.completed
+    });
   }
 
   render() {
